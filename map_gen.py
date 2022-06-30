@@ -43,7 +43,7 @@ if __name__=="__main__":
     d_gps=pd.read_csv("gps_data.csv", header=0)
     d_num=pd.read_csv("vacancy_list.csv", header=0)
 
-    fld_s=["一般", "英語文", "自然科學", "音樂", "視覺藝術", "體育一般"]
+    fld_s=list(d_num.columns)[1:]
 
     doc_t=KML.Document(KML.name("111新北教甄開缺地圖"))
     

@@ -23,11 +23,7 @@ python parse_school.py
 資料來源：https://school.qmap.tw/
 
 ## 建立 kml 檔案
-先把學校、科別、缺額建立成 vacancy_list.csv ，調整 map_gen.py 中的科別列表：
-```python
-fld_s=["一般", "英語文", "自然科學", "音樂", "視覺藝術", "體育一般"]
-```
-然後執行程式：
+先把學校、科別、缺額建立成 vacancy_list.csv ，然後執行程式：
 ```
 python map_gen.py
 ```
