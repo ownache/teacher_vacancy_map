@@ -1,4 +1,7 @@
-import csv, re
+import csv
+import re
+import sys
+import configparser
 
 name_spec=[
     r"區(.*)國民",
@@ -48,9 +51,15 @@ def gen_map(csv_vacancy="vacancy_list.csv", csv_gps="gps_raw.csv", map_name="tea
 
     data_all={}
     for i in data:
+        found=False
         for j in data_gps:
             if j in school_name_parser(i):
                 data_all[i]={'name':i, 'gps':[float(ii) for ii in data_gps[j]], 'data':[int(ii) for ii in data[i]]}
+                found=True
+                break
+        if not found:
+            print("{} not found in gps list".format(i))
+
 
     str_folders=""
     for i, folder_i in enumerate(cols):
@@ -66,4 +75,13 @@ def gen_map(csv_vacancy="vacancy_list.csv", csv_gps="gps_raw.csv", map_name="tea
         fp.write(str_map)
 
 if __name__=="__main__":
-    gen_map()
+    if len(sys.argv)==2:
+        config = configparser.ConfigParser()
+        config.read(sys.argv[1])
+        gen_map(
+            csv_vacancy=config['IO Files']["VacancyListCSV"], 
+            csv_gps=config['IO Files']["SchoolGpsCSV"], 
+            map_name=config['IO Files']["MapName"], 
+            title=config['IO Files']["MapTitle"])
+    else:
+        gen_map()
