@@ -1,10 +1,20 @@
 # 準備
-* Python
-    * Pandas
-    * pyKML
 * 開缺 csv 檔案
 
 # 建立方法
+修改 input.ini 檔案，其中：
+* VacancyListCSV: csv 檔案路徑，裡面存放各學校開缺情況
+* SchoolGpsCSV: csv 檔案路徑，裡面存放學校 gps 座標
+* MapName: 輸出檔名，副檔名為 kml
+* MapTitle: 地圖標題
+
+完成後儲存 input.ini，在資料夾中空白處右鍵，點選"在終端中開啟"。接著輸入指令：
+```
+gen_map.exe inputs.ini
+```
+kml 檔案就會在資料夾中產生。
+
+# 其他細節
 ## 抓取學校 GPS 資料
 調整 parse_school.py 內的程式碼，修改成目標縣市的網址：
 ```python
@@ -22,10 +32,5 @@ python parse_school.py
 
 資料來源：https://school.qmap.tw/
 
-## 建立 kml 檔案
-先把學校、科別、缺額建立成 vacancy_list.csv ，然後執行程式：
-```
-python map_gen.py
-```
-輸出會存在 map_test.kml 裡面，直接到 google my map 匯入圖層，就可以得到基本的開缺地圖了。
+
 
